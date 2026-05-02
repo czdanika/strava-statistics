@@ -194,7 +194,7 @@ function _pollImportStatus() {
                 _importPoller = null;
                 icon.style.animation = '';
                 label.textContent = '{{ "Import started!"|trans }}';
-                setTimeout(() => { label.textContent = '{{ "Sync Strava"|trans }}'; btn.disabled = false; }, 3000);
+                setTimeout(() => { window.location.reload(); }, 2000);
             }
         })
         .catch(() => {

@@ -20,8 +20,8 @@ final readonly class TriggerImportRequestHandler
         file_put_contents($logFile, "STARTED\n");
 
         exec(sprintf(
-            'sh -c "php /var/www/bin/console app:strava:import-data >> %s 2>&1; echo DONE >> %s; touch %s" > /dev/null 2>&1 &',
-            $logFile, $logFile, $doneFile
+            'sh -c "php /var/www/bin/console app:strava:import-data >> %s 2>&1 && php /var/www/bin/console app:strava:build-files >> %s 2>&1; echo DONE >> %s; touch %s" > /dev/null 2>&1 &',
+            $logFile, $logFile, $logFile, $doneFile
         ));
 
         return new JsonResponse(['status' => 'started'], Response::HTTP_OK);
